@@ -1,11 +1,95 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Upload Image</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Upload Your Image</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: linear-gradient(to bottom, #f5f7fa, #c3cfe2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      background: white;
+      padding: 24px;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      color: #333;
+      margin-bottom: 8px;
+    }
+
+    p {
+      font-size: 0.95rem;
+      color: #666;
+      margin-bottom: 16px;
+    }
+
+    input[type="file"] {
+      width: 100%;
+      padding: 12px;
+      border: 2px dashed #bbb;
+      border-radius: 12px;
+      background: #fafafa;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    input[type="file"]:hover {
+      border-color: #666;
+    }
+
+    .uuid {
+      font-size: 0.85rem;
+      color: #999;
+      margin-top: 12px;
+      word-break: break-all;
+    }
+
+    .footer {
+      font-size: 0.7rem;
+      color: #aaa;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
-  <h1>Upload an image for your 3D model</h1>
-  <input type="file" />
-  <p>This is your unique upload link!</p>
+
+  <div class="container">
+    <h1>Upload Your Image</h1>
+    <p>Use the form below to upload your photo for 3D conversion.</p>
+    <input type="file" accept="image/*" />
+    <div class="uuid" id="uuidDisplay"></div>
+    <div class="footer">Powered by Unity + GitHub Pages</div>
+  </div>
+
+  <script>
+    // Grab UUID from path or query
+    const pathParts = window.location.pathname.split("/");
+    const uuid = pathParts[pathParts.length - 1];
+    const isUUID = uuid.length > 10;
+
+    if (isUUID) {
+      document.getElementById("uuidDisplay").innerText = "Session ID: " + uuid;
+    }
+  </script>
 </body>
 </html>
